@@ -37,8 +37,17 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+let navItems = siteContent.nav;
+let nav = document.getElementsByClassName("nav");
 
-// test 
+let ctaItems = siteContent.cta;
+let cta = document.getElementsByClassName("cta");
+
+let maincontent_items = siteContent["main-content"]; 
+let maincontent = document.getElementsByClassName("main-content");
+
+let contactItems = siteContent.contact;
+let contact = document.getElementsByClassName("contact");
+
+let footerItem = siteContent.footer;
+let footer = document.getElementsByClassName("footer");
