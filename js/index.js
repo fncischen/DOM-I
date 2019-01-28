@@ -37,17 +37,52 @@ const siteContent = {
   },
 };
 
+// helper functions 
+
+// converts object to array data structure to allow for index access of object items. 
+function ObjToArray(array){
+  return Object.entries(array); // returns array of key pair values
+}
+
+
+function isContentHeader(value){
+  return value[0].includes("h4");
+}
+
+function notContentHeader(value) {
+  return !value[0].includes("h4")
+}
+
+// Step 1 // declare data & relevant properties 
+
 let navItems = siteContent.nav;
-let nav = document.getElementsByClassName("nav");
+
+let header = document.querySelector("header");
+let nav = document.querySelector("header nav");
+let listOfLinks = nav.querySelectorAll("a");
 
 let ctaItems = siteContent.cta;
-let cta = document.getElementsByClassName("cta");
+let cta = document.querySelector(".cta");
 
-let maincontent_items = siteContent["main-content"]; 
-let maincontent = document.getElementsByClassName("main-content");
+let main_content_items = siteContent["main-content"]; 
+let maincontent = document.querySelector(".main-content");
 
 let contactItems = siteContent.contact;
-let contact = document.getElementsByClassName("contact");
+let contact = document.querySelector(".contact");
 
 let footerItem = siteContent.footer;
-let footer = document.getElementsByClassName("footer");
+let footer = document.querySelector(".footer");
+
+// Step 2 // filter out by property / class.
+
+ctaItems = ObjToArray(ctaItems);
+
+mainContentHeadings = ObjToArray(main_content_items).filter(isContentHeader);
+mainContentText = ObjToArray(main_content_items).filter(notContentHeader);
+
+contactHeadings = ObjToArray(contactItems).filter(isContentHeader);
+contactText = ObjToArray(contactItems).filter(notContentHeader);
+
+console.log(contactText);
+
+// Step 3 // vertically populate all relevant fields. 
