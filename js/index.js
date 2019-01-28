@@ -39,11 +39,9 @@ const siteContent = {
 
 // helper functions 
 
-// converts object to array data structure to allow for index access of object items. 
 function ObjToArray(array){
   return Object.entries(array); // returns array of key pair values
 }
-
 
 function isContentHeader(value){
   return value[0].includes("h4");
@@ -51,6 +49,22 @@ function isContentHeader(value){
 
 function notContentHeader(value) {
   return !value[0].includes("h4")
+}
+
+function populateHeaderMenu(menu, image) {
+
+}
+
+function populateMainContent(oldContent, newHeaders, newText) {
+  let headerContent = oldContent.querySelectorAll(".text-content h4")
+  for (let i = 0; i <= headerContent.length; i++) {
+    headerContent[i].textContent = newHeaders[i];
+  }
+
+  let textContent = oldContent.querySelectorAll(".text-content p")
+  for (let i = 0; i <= headerContent.length; i++) {
+    headerContent[i].textContent = newText[i];
+  }
 }
 
 // Step 1 // declare data & relevant properties 
@@ -66,6 +80,7 @@ let cta = document.querySelector(".cta");
 
 let main_content_items = siteContent["main-content"]; 
 let maincontent = document.querySelector(".main-content");
+console.log(maincontent);
 
 let contactItems = siteContent.contact;
 let contact = document.querySelector(".contact");
@@ -75,14 +90,20 @@ let footer = document.querySelector(".footer");
 
 // Step 2 // filter out by property / class.
 
+const navImg = ObjToArray(navItems).filter(e => e[0].includes("img-src"));
+const navItemHyperlinks = ObjToArray(navItems).filter(e => e[0].includes("nav-item"));
+
 ctaItems = ObjToArray(ctaItems);
 
-mainContentHeadings = ObjToArray(main_content_items).filter(isContentHeader);
-mainContentText = ObjToArray(main_content_items).filter(notContentHeader);
+const mainContentHeadings = ObjToArray(main_content_items).filter(isContentHeader);
+const mainContentText = ObjToArray(main_content_items).filter(notContentHeader);
 
-contactHeadings = ObjToArray(contactItems).filter(isContentHeader);
-contactText = ObjToArray(contactItems).filter(notContentHeader);
+const contactHeadings = ObjToArray(contactItems).filter(isContentHeader);
+const contactText = ObjToArray(contactItems).filter(notContentHeader);
 
-console.log(contactText);
+footerItem = ObjToArray(footerItem);
 
 // Step 3 // vertically populate all relevant fields. 
+
+
+
